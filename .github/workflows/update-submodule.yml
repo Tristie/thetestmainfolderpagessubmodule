@@ -1,0 +1,38 @@
+name: Update Submodule on Submodule Push
+
+on:
+  repository_dispatch:
+
+jobs:
+  update_submodule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Git user
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<actions@github.com>"
+
+      - name: Update submodule
+        run: |
+          git submodule update --remote --merge my-folder # Replace 'my-folder'
+
+      - name: Check for submodule changes
+        id: check_changes
+        run: |
+          if ! git diff-index --quiet HEAD --; then
+            echo "::set-output name=changed::true"
+          else
+            echo "::set-output name=changed::false"
+          fi
+
+      - name: Commit and push submodule update
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git add other  # Stage the submodule pointer update
+          git commit -m "Update submodule 'other' to latest commit"
+          git push origin main # Or your main branch
