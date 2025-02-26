@@ -1,0 +1,6 @@
+defaults:
+  - scope:
+      path: "other"
+      
+jekyll_build_options:
+  -- -- --recurse-submodules
