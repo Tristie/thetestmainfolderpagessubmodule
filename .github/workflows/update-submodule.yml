@@ -18,7 +18,7 @@ jobs:
           submodules: true
 
       - name: Set up Jekyll
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.x'
           bundler-cache: true
