@@ -38,10 +38,10 @@ jobs:
 
       - name: List Artifact Contents (for debugging links)
         run: |
-          cd base/_site
+          cd _site
           find . -type l -print
           find . -type h -print
-          
+
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
 
