@@ -11,6 +11,8 @@ jobs:
           pages: write
           id-token: write
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
     steps:
       - name: Checkout parent repository with submodules
         uses: actions/checkout@v4
