@@ -1,3 +1,3 @@
-[submodule "logarithm"]
-	path = logarithm
+[submodule "test"]
+	path = test
 	url = https://github.com/Tristie/thetestfolderforghpages.git
