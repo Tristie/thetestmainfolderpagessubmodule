@@ -20,6 +20,14 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+
+      - name: Update submodule
+        run: |
+          git submodule update --init --recursive --checkout -f --remote -- "${{github.event.client_payload.module}}"
+          git config --global user.name "GitHub Action"
+          git config --global user.email "noreply@github.com"
+          git commit -am "deploy: ${{github.event.client_payload.module}} - ${{github.event.client_payload.sha}}"
+          git push
           
       - name: Cache Jekyll dependencies
         uses: actions/cache@v3
@@ -40,17 +48,11 @@ jobs:
           bundle config path vendor/bundle
           bundle install
 
-      - name: Clean previous build
-        run: rm -rf _site
-
       - name: Build with Jekyll
         run: |
           bundle exec jekyll build --destination _site
         env:
           JEKYLL_ENV: production
-
-      - name: List contents of _site
-        run: ls -lR _site
 
       - name: Upload GitHub Pages Artifact
         uses: actions/upload-pages-artifact@v3
