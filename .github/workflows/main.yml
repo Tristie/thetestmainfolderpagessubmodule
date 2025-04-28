@@ -8,6 +8,9 @@ on:
 
 jobs:
   build:
+    permissions:
+      pages: write
+      id-token: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code with submodules
