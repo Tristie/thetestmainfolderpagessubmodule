@@ -13,12 +13,12 @@ jobs:
       - name: Checkout code with submodules
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.inputs.branch || github.head_ref || github.ref_name }}
           submodules: recursive
 
       - name: Set up Ruby environment
         uses: ruby/setup-ruby@v1
         with:
+          version: "3.3"
           bundler-cache: true
 
       - name: Install dependencies
