@@ -21,13 +21,17 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Update submodule
+      - name: Update submodule and push if changed
         run: |
           git submodule update --init --recursive --checkout -f --remote -- .
           git config --global user.name "GitHub Action"
           git config --global user.email "noreply@github.com"
-          git commit -am "update submodules"
-          git push
+          if ! git diff --quiet HEAD; then
+            git commit -am "update submodules"
+            git push
+          else
+            echo "No submodule changes to commit and push."
+          fi
           
       - name: Cache Jekyll dependencies
         uses: actions/cache@v3
