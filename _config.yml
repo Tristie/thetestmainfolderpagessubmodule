@@ -1,2 +1,5 @@
 title: Tristie Tests
 description: abcd
+
+plugins:
+  - jekyll-optional-front-matter
