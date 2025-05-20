@@ -41,6 +41,8 @@ GEM
       safe_yaml (~> 1.0)
       terminal-table (>= 1.8, < 4.0)
       webrick (~> 1.7)
+    jekyll-optional-front-matter (0.3.2)
+      jekyll (>= 3.0, < 5.0)
     jekyll-sass-converter (3.0.0)
       sass-embedded (~> 1.54)
     jekyll-watch (2.2.1)
@@ -86,6 +88,7 @@ PLATFORMS
 DEPENDENCIES
   bundler
   jekyll (~> 4.0)
+  jekyll-optional-front-matter
 
 BUNDLED WITH
    2.5.18
